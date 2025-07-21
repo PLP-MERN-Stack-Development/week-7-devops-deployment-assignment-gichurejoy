@@ -1,78 +1,180 @@
-[![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-2e0aaae1b6195c2367325f4f02e2d04e9abb55f0b24a779b69b11b9e10269abc.svg)](https://classroom.github.com/online_ide?assignment_repo_id=19964373&assignment_repo_type=AssignmentRepo)
-# Deployment and DevOps for MERN Applications
+# MERN Stack Blog Application
 
-This assignment focuses on deploying a full MERN stack application to production, implementing CI/CD pipelines, and setting up monitoring for your application.
+A full-stack blog application built with the MERN stack (MongoDB, Express.js, React.js, Node.js) featuring user authentication, blog post management, and advanced features.
 
-## Assignment Overview
+## Features
 
-You will:
-1. Prepare your MERN application for production deployment
-2. Deploy the backend to a cloud platform
-3. Deploy the frontend to a static hosting service
-4. Set up CI/CD pipelines with GitHub Actions
-5. Implement monitoring and maintenance strategies
+- 🔐 **User Authentication**
+  - JWT-based authentication
+  - User registration and login
+  - Protected routes
+  - Role-based authorization (Admin/User)
 
-## Getting Started
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week7-Assignment.md` file
-4. Use the provided templates and configuration files as a starting point
 
-## Files Included
+- 📝 **Blog Post Management**
+  - Create, read, update, and delete posts
+  - Rich text editing
+  - Featured image uploads
+  - Category management
+  - Comments system
 
-- `Week7-Assignment.md`: Detailed assignment instructions
-- `.github/workflows/`: GitHub Actions workflow templates
-- `deployment/`: Deployment configuration files and scripts
-- `.env.example`: Example environment variable templates
-- `monitoring/`: Monitoring configuration examples
+ 
 
-## Requirements
+- 🎨 **Modern UI/UX**
+  - Responsive Material-UI design
+  - Clean and intuitive interface
+  - Optimistic updates
+  - Loading states and error handling
 
-- A completed MERN stack application from previous weeks
-- Accounts on the following services:
-  - GitHub
-  - MongoDB Atlas
-  - Render, Railway, or Heroku (for backend)
-  - Vercel, Netlify, or GitHub Pages (for frontend)
-- Basic understanding of CI/CD concepts
+- 🔍 **Advanced Features**
+  - Post search functionality
+  - Category filtering
+  - Pagination
+  - Image upload support
+  - Comment system
 
-## Deployment Platforms
+## Technology Stack
 
-### Backend Deployment Options
-- **Render**: Easy to use, free tier available
-- **Railway**: Developer-friendly, generous free tier
-- **Heroku**: Well-established, extensive documentation
+- **Frontend:**
+  - React.js with Vite
+  - Material-UI for styling
+  - React Router for navigation
+  - React Context for state management
+  - Axios for API calls
 
-### Frontend Deployment Options
-- **Vercel**: Optimized for React apps, easy integration
-- **Netlify**: Great for static sites, good CI/CD
-- **GitHub Pages**: Free, integrated with GitHub
+- **Backend:**
+  - Node.js & Express.js
+  - MongoDB Atlas for database
+  - JWT for authentication
+  - Multer for file uploads
+  - Express Validator for input validation
 
-## CI/CD Pipeline
+## Project Structure
 
-The assignment includes templates for setting up GitHub Actions workflows:
-- `frontend-ci.yml`: Tests and builds the React application
-- `backend-ci.yml`: Tests the Express.js backend
-- `frontend-cd.yml`: Deploys the frontend to your chosen platform
-- `backend-cd.yml`: Deploys the backend to your chosen platform
+```
+mern-blog/
+├── client/                 # React frontend
+│   ├── src/
+│   │   ├── components/    # Reusable components
+│   │   ├── pages/        # Page components
+│   │   ├── context/      # Context providers
+│   │   ├── services/     # API services
+│   │   └── hooks/        # Custom hooks
+│   └── package.json
+├── server/                # Express backend
+│   ├── config/           # Configuration files
+│   ├── controllers/      # Route controllers
+│   ├── models/          # Mongoose models
+│   ├── routes/          # API routes
+│   ├── middleware/      # Custom middleware
+│   └── utils/           # Utility functions
+└── README.md
+```
 
-## Submission
+## API Endpoints
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+### Authentication
+- POST `/api/auth/register` - Register new user
+- POST `/api/auth/login` - Login user
+- GET `/api/auth/me` - Get current user
 
-1. Complete all deployment tasks
-2. Set up CI/CD pipelines with GitHub Actions
-3. Deploy both frontend and backend to production
-4. Document your deployment process in the README.md
-5. Include screenshots of your CI/CD pipeline in action
-6. Add URLs to your deployed applications
+### Posts
+- GET `/api/posts` - Get all posts (with pagination)
+- GET `/api/posts/:id` - Get single post
+- POST `/api/posts` - Create new post
+- PUT `/api/posts/:id` - Update post
+- DELETE `/api/posts/:id` - Delete post
+- POST `/api/posts/:id/comments` - Add comment to post
 
-## Resources
+### Categories
+- GET `/api/categories` - Get all categories
+- POST `/api/categories` - Create new category
+- PUT `/api/categories/:id` - Update category
+- DELETE `/api/categories/:id` - Delete category
 
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [MongoDB Atlas Documentation](https://docs.atlas.mongodb.com/)
-- [Render Documentation](https://render.com/docs)
-- [Railway Documentation](https://docs.railway.app/)
-- [Vercel Documentation](https://vercel.com/docs)
-- [Netlify Documentation](https://docs.netlify.com/) 
+## Setup Instructions
+
+1. Clone the repository
+```bash
+git clone <repository-url>
+```
+
+2. Install dependencies
+```bash
+# Install server dependencies
+cd server
+npm install
+
+# Install client dependencies
+cd ../client
+npm install
+```
+
+3. Environment Setup
+   - Create `.env` file in server directory with:
+```
+PORT=5000
+MONGODB_URI=your_mongodb_atlas_connection_string
+JWT_SECRET=your_jwt_secret
+NODE_ENV=development
+```
+
+4. Start the application
+```bash
+# Start server (from server directory)
+npm run dev
+
+# Start client (from client directory)
+npm run dev
+```
+
+5. Access the application
+- Frontend: http://localhost:5173
+- Backend: http://localhost:5000
+
+## Screenshots
+
+### Home Page
+![Home Page](./screenshots/home.png)
+*Modern landing page with a welcoming message and clear call-to-action buttons for creating posts or viewing the blog*
+
+### Create New Post
+![Create Post](./screenshots/create-post.png)
+*User-friendly post creation interface with fields for title, content, categories, and featured image URL*
+
+### My Posts Dashboard
+![My Posts](./screenshots/my-posts.png)
+*Personal dashboard displaying user's posts with options to edit, delete, and view posts, including category tags*
+
+### Authentication
+![Login Page](./screenshots/login.png)
+*Clean and minimalist login interface with email/password authentication and signup option*
+
+### Features Showcased in Screenshots:
+- 🎨 Modern and clean UI design with pink accent colors
+- 📱 Fully responsive layout
+- 🔐 User authentication system
+- ✍️ Intuitive post creation and management
+- 🏷️ Category system for organizing posts
+- 💅 Consistent styling and branding throughout
+
+## Future Improvements
+
+- [ ] Add social authentication
+- [ ] Implement rich text editor
+- [ ] Add post analytics
+- [ ] Add user profiles
+- [ ] Implement real-time notifications
+
+## Contributing
+
+1. Fork the repository
+2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the branch (`git push origin feature/AmazingFeature`)
+5. Open a Pull Request
+
+## License
+
+This project is licensed under the MIT License. 
